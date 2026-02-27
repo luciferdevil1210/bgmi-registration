@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BGMI Elite Scrims – Register now</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- preloader / loading animation -->
+    <div class="preloader" id="preloader">
+        <div class="spinner"></div>
+        <div class="loader-text">LOADING ARENA<span>.</span><span>.</span><span>.</span></div>
+    </div>
+
+    <!-- scroll progress bar -->
+    <div class="progress-container" id="progressContainer">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- sticky header with hamburger -->
+    <header class="sticky-header">
+        <div class="logo">BGMI<span>Elite</span></div>
+        <nav class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#slots">Slots</a>
+            <a href="#details">Details</a>
+            <a href="#register">Register</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    </header>
+
+    <!-- sound toggle (bonus) -->
+    <div class="sound-toggle" id="soundToggle"><i class="fas fa-volume-up"></i> SFX</div>
+
+    <!-- main container -->
+    <main>
+        <!-- HERO SECTION -->
+        <section id="home" class="hero">
+            <div class="animated-bg"></div>
+            <div class="hero-content">
+                <h1>Join India’s Most Competitive BGMI Scrims</h1>
+                <p class="subhead">Daily Custom Rooms | Free Entry | Real Competition</p>
+                <div class="cta-group">
+                    <a href="#register" class="btn primary-btn glow" id="registerNowBtn">Register Now</a>
+                    <a href="https://chat.whatsapp.com/BS4wofjg0eQJGhiMbrkg3q?mode=gi_t" target="_blank" class="btn secondary-btn" id="whatsappBtn"><i class="fab fa-whatsapp"></i> Join WhatsApp Group</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about">
+            <h2 class="section-title">About Scrims</h2>
+            <div class="about-grid">
+                <p class="about-text">BGMI Elite Scrims is fastest growing battle arena. We provide daily competitive matches with organized custom rooms, anti-cheat fair play, and zero entry fee. Whether you're a pro or rising star, prove your mettle against real teams.</p>
+                <div class="highlights">
+                    <span><i class="fas fa-check-circle"></i> Free Slot Entry</span>
+                    <span><i class="fas fa-calendar-alt"></i> Daily Matches</span>
+                    <span><i class="fas fa-door-open"></i> Organized Custom Rooms</span>
+                    <span><i class="fas fa-shield-alt"></i> Fair Play Policy</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIVE SLOT COUNTER SECTION (with dynamic counter) -->
+        <section id="slots" class="slots">
+            <h2 class="section-title">Live Team Slots</h2>
+            <div class="slot-card glass">
+                <div class="slot-number">Total: <span id="totalSlots">25</span> Teams</div>
+                <div class="slot-number remaining">Remaining: <span id="remainingSlots">25</span></div>
+                <div class="slot-bar"><div id="slotFill" class="slot-fill" style="width:100%"></div></div>
+                <p class="slot-info"><i class="fas fa-users"></i> register fast — slots first come first</p>
+            </div>
+        </section>
+
+        <!-- TOURNAMENT DETAILS SECTION -->
+        <section id="details" class="details">
+            <h2 class="section-title">Match Details</h2>
+            <div class="details-grid">
+                <div class="detail-card glass"><i class="fas fa-clock"></i><h3>Match Time</h3><p>9:00 PM (Daily)</p></div>
+                <div class="detail-card glass"><i class="fas fa-map"></i><h3>Map Type</h3><p>Erangel / Miramar</p></div>
+                <div class="detail-card glass"><i class="fas fa-lock"></i><h3>Room ID & Pass</h3><p class="blur" id="roomPass">●●●●●●●●</p><button class="small-reveal" id="revealBtn"><i class="far fa-eye"></i></button></div>
+                <div class="detail-card glass"><i class="fas fa-gavel"></i><h3>Rules</h3><p>No Hacks · No Teaming · Respect Admins</p></div>
+            </div>
+        </section>
+
+        <!-- REGISTRATION FORM SECTION -->
+        <section id="register" class="register">
+            <h2 class="section-title">Register Your Team</h2>
+            <form id="registrationForm" class="glass form">
+                <input type="text" name="teamName" placeholder="Team Name *" required>
+                <input type="text" name="iglName" placeholder="IGL Name *" required>
+                <input type="text" name="bgmiId" placeholder="BGMI ID *" required>
+                <input type="email" name="email" placeholder="Email *" required>
+                <input type="tel" name="whatsapp" placeholder="WhatsApp Number *" required pattern="[0-9]{10,12}" title="10-12 digit number">
+                <div class="file-field"><label><i class="fas fa-camera"></i> Upload Screenshot (optional)</label><input type="file" name="screenshot" accept="image/*"></div>
+                <label class="checkbox"><input type="checkbox" name="terms" required> I accept terms & fair play policy</label>
+                <button type="submit" class="btn primary-btn glow" id="submitFormBtn">Confirm Registration</button>
+            </form>
+        </section>
+
+        <!-- INSTAGRAM SECTION -->
+        <section id="instagram" class="instagram">
+            <h2 class="section-title">Follow For Updates</h2>
+            <div class="insta-card glass">
+                <i class="fab fa-instagram insta-icon"></i>
+                <p>Get match alerts & results</p>
+                <a href="https://instagram.com/crz_gaming_4" target="_blank" class="btn insta-btn"><i class="fab fa-instagram"></i> @crz_gaming_4</a>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION (with simple form) -->
+        <section id="contact" class="contact">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info glass">
+                    <p><i class="fas fa-envelope"></i> bgmiscrimsreport.in</p>
+                    <p><i class="fab fa-whatsapp"></i> <a href="https://chat.whatsapp.com/BS4wofjg0eQJGhiMbrkg3q?mode=gi_t" target="_blank">WhatsApp App</a></p>
+                    <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/crz_gaming_4" target="_blank">@crz_gaming_4</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> India (Online)</p>
+                </div>
+                <form class="contact-form glass" id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Message" rows="3"></textarea>
+                    <button type="submit" class="btn secondary-btn">Send <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </section>
+
+        <!-- hidden admin panel (bonus demo) -->
+        <div class="hidden-admin" id="adminPanel" style="display: none;">Admin: last 5 reg 👤 stored in console</div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 BGMI Elite Scrims — all rights reserved</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="https://instagram.com/crz_gaming_4" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#" id="scrollTop"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- hidden audio for sound effect (bonus) -->
+    <audio id="clickSound" src="data:audio/wav;base64,UklGRlwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVEAAACAgICAf39/f39/f3+AgICAf39/f3+AgICAf39/f3+AgICAf39/f3+AgICAf39/f3+AgICAf39/f3+AgICAf39/f38="></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
