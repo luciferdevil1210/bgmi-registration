@@ -45,9 +45,47 @@
 
     // ---------- REGISTRATION ARRAY ----------
     const registrations = [];
+    const ownerWhatsAppNumber = '8856984314';
+
+    function getOwnerNumberWithCountryCode(number) {
+        const cleanNumber = String(number).replace(/\D/g, '');
+        if (cleanNumber.length === 10) return `91${cleanNumber}`;
+        return cleanNumber;
+    }
+
+    // ---------- LIVE TEAM PREVIEW ----------
+    const previewTeam = document.getElementById('previewTeam');
+    const previewIgl = document.getElementById('previewIgl');
+    const previewBgmi = document.getElementById('previewBgmi');
+    const previewPhone = document.getElementById('previewPhone');
+    const previewCity = document.getElementById('previewCity');
+    const previewMode = document.getElementById('previewMode');
+
+    function setPreviewValue(element, value, fallback) {
+        if (!element) return;
+        element.innerText = value ? value : fallback;
+    }
+
+    function syncTeamPreview(form) {
+        if (!form) return;
+        setPreviewValue(previewTeam, form.teamName.value.trim(), 'Not provided');
+        setPreviewValue(previewIgl, form.iglName.value.trim(), 'Not provided');
+        setPreviewValue(previewBgmi, form.bgmiId.value.trim(), 'Not provided');
+        setPreviewValue(previewPhone, form.whatsapp.value.trim(), 'Not provided');
+        setPreviewValue(previewCity, form.city.value.trim(), 'Not provided');
+        setPreviewValue(previewMode, form.matchType.value, 'Not selected');
+    }
 
     // ---------- FORM VALIDATION + SUBMIT ----------
     const regForm = document.getElementById('registrationForm');
+    if (regForm) {
+        regForm.querySelectorAll('input, select').forEach((field) => {
+            field.addEventListener('input', () => syncTeamPreview(regForm));
+            field.addEventListener('change', () => syncTeamPreview(regForm));
+        });
+        syncTeamPreview(regForm);
+    }
+
     if (regForm) regForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -57,9 +95,11 @@
         const bgmi = regForm.bgmiId.value.trim();
         const email = regForm.email.value.trim();
         const phone = regForm.whatsapp.value.trim();
+        const city = regForm.city.value.trim();
+        const matchType = regForm.matchType.value;
         const terms = regForm.terms.checked;
 
-        if (!team || !igl || !bgmi || !email || !phone || !terms) {
+        if (!team || !igl || !bgmi || !email || !phone || !city || !matchType || !terms) {
             alert('Please fill all required fields and accept terms.');
             return;
         }
@@ -81,7 +121,7 @@
         }
 
         // push to array
-        const formData = { team, igl, bgmi, email, phone, timestamp: new Date() };
+        const formData = { team, igl, bgmi, email, phone, city, matchType, timestamp: new Date() };
         registrations.push(formData);
         console.log('Registered teams:', registrations);
 
@@ -90,15 +130,30 @@
         localStorage.setItem('bgmiRemainingSlots', remaining);
         updateSlotUI();
 
-        // success popup
-        alert(`Registration successful! Welcome ${team}`);
+        // send complete registration info directly to authorized owner
+        const ownerMessage = [
+            '🏆 New BGMI Team Registration',
+            `Team: ${team}`,
+            `IGL: ${igl}`,
+            `BGMI ID: ${bgmi}`,
+            `Email: ${email}`,
+            `WhatsApp: ${phone}`,
+            `Location: ${city}`,
+            `Mode: ${matchType}`,
+            `Submitted: ${new Date().toLocaleString()}`
+        ].join('\n');
+        const ownerNumber = getOwnerNumberWithCountryCode(ownerWhatsAppNumber);
+        const waLink = `https://wa.me/${ownerNumber}?text=${encodeURIComponent(ownerMessage)}`;
+        const ownerChatWindow = window.open('', '_blank');
+        if (ownerChatWindow) ownerChatWindow.location.href = waLink;
+        else window.location.href = waLink;
 
-        // redirect to whatsapp auto message
-        const waMsg = `Hello%20I%20have%20registered%20my%20team%20${encodeURIComponent(team)}`;
-        window.open(`https://chat.whatsapp.com/BS4wofjg0eQJGhiMbrkg3q?mode=gi_t&text=${waMsg}`, '_blank');
+        // success popup
+        alert(`Registration successful! Team information sent to owner.`);
 
         // reset form
         if (regForm) regForm.reset();
+        syncTeamPreview(regForm);
 
         // bonus hidden admin show
         const adminPanel = document.getElementById('adminPanel');
