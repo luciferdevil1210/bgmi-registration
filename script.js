@@ -45,9 +45,41 @@
 
     // ---------- REGISTRATION ARRAY ----------
     const registrations = [];
+    const ownerWhatsAppNumber = '+918856984314'; // replace with actual number for direct notifications
+
+    // ---------- LIVE TEAM PREVIEW ----------
+    const previewTeam = document.getElementById('previewTeam');
+    const previewIgl = document.getElementById('previewIgl');
+    const previewBgmi = document.getElementById('previewBgmi');
+    const previewPhone = document.getElementById('previewPhone');
+    const previewCity = document.getElementById('previewCity');
+    const previewMode = document.getElementById('previewMode');
+
+    function setPreviewValue(element, value, fallback) {
+        if (!element) return;
+        element.innerText = value ? value : fallback;
+    }
+
+    function syncTeamPreview(form) {
+        if (!form) return;
+        setPreviewValue(previewTeam, form.teamName.value.trim(), 'Not provided');
+        setPreviewValue(previewIgl, form.iglName.value.trim(), 'Not provided');
+        setPreviewValue(previewBgmi, form.bgmiId.value.trim(), 'Not provided');
+        setPreviewValue(previewPhone, form.whatsapp.value.trim(), 'Not provided');
+        setPreviewValue(previewCity, form.city.value.trim(), 'Not provided');
+        setPreviewValue(previewMode, form.matchType.value, 'Not selected');
+    }
 
     // ---------- FORM VALIDATION + SUBMIT ----------
     const regForm = document.getElementById('registrationForm');
+    if (regForm) {
+        regForm.querySelectorAll('input, select').forEach((field) => {
+            field.addEventListener('input', () => syncTeamPreview(regForm));
+            field.addEventListener('change', () => syncTeamPreview(regForm));
+        });
+        syncTeamPreview(regForm);
+    }
+
     if (regForm) regForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -57,9 +89,11 @@
         const bgmi = regForm.bgmiId.value.trim();
         const email = regForm.email.value.trim();
         const phone = regForm.whatsapp.value.trim();
+        const city = regForm.city.value.trim();
+        const matchType = regForm.matchType.value;
         const terms = regForm.terms.checked;
 
-        if (!team || !igl || !bgmi || !email || !phone || !terms) {
+        if (!team || !igl || !bgmi || !email || !phone || !city || !matchType || !terms) {
             alert('Please fill all required fields and accept terms.');
             return;
         }
@@ -81,7 +115,7 @@
         }
 
         // push to array
-        const formData = { team, igl, bgmi, email, phone, timestamp: new Date() };
+        const formData = { team, igl, bgmi, email, phone, city, matchType, timestamp: new Date() };
         registrations.push(formData);
         console.log('Registered teams:', registrations);
 
@@ -97,8 +131,24 @@
         const waMsg = `Hello%20I%20have%20registered%20my%20team%20${encodeURIComponent(team)}`;
         window.open(`https://chat.whatsapp.com/BS4wofjg0eQJGhiMbrkg3q?mode=gi_t&text=${waMsg}`, '_blank');
 
+        // send complete registration info directly to authorized owner
+        const ownerMessage = [
+            '🏆 New BGMI Team Registration',
+            `Team: ${team}`,
+            `IGL: ${igl}`,
+            `BGMI ID: ${bgmi}`,
+            `Email: ${email}`,
+            `WhatsApp: ${phone}`,
+            `Location: ${city}`,
+            `Mode: ${matchType}`,
+            `Submitted: ${new Date().toLocaleString()}`
+        ].join('\n');
+        const waLink = `https://wa.me/${ownerWhatsAppNumber}?text=${encodeURIComponent(ownerMessage)}`;
+        window.open(waLink, '_blank');
+
         // reset form
         if (regForm) regForm.reset();
+        syncTeamPreview(regForm);
 
         // bonus hidden admin show
         const adminPanel = document.getElementById('adminPanel');
@@ -124,60 +174,13 @@
     const registerNowBtn = document.getElementById('registerNowBtn');
     if (registerNowBtn) registerNowBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const target = document.querySelector('#register');
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('registrationForm').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // ---------- SOUND TOGGLE (bonus) ----------
-    const soundToggle = document.getElementById('soundToggle');
-    const clickSound = document.getElementById('clickSound');
-    let soundOn = false;
-    if (soundToggle) {
-        soundToggle.addEventListener('click', () => {
-            soundOn = !soundOn;
-            soundToggle.innerHTML = soundOn ? '<i class="fas fa-volume-off"></i> SFX' : '<i class="fas fa-volume-up"></i> SFX';
-            if (soundOn && clickSound && typeof clickSound.play === 'function') clickSound.play().catch(e => null);
-        });
-    }
-
-    // play sound on any button click if enabled (optional)
-    document.querySelectorAll('button, .btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (soundOn && clickSound && typeof clickSound.play === 'function') clickSound.play().catch(e => null);
-        });
-    });
-
-    // ---------- SCROLL REVEAL (simple intersection observer) ----------
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.style.opacity = 1, entry.target.style.transform = 'translateY(0)';
-        });
-    }, { threshold: 0.2 });
-    sections.forEach(s => { s.style.opacity = 0; s.style.transform = 'translateY(30px)'; s.style.transition = 'all 0.6s'; observer.observe(s); });
-
-    // ---------- INSTAGRAM & WHATSAPP REDIRECT (ensure working links) ----------
-    document.querySelectorAll('a[target="_blank"]').forEach(a => {
-        try {
-            if (!a.href || !a.href.includes('https://chat.whatsapp.com/BS4wofjg0eQJGhiMbrkg3q?mode=gi_t')) a.href = 'https://instagram.com/crz_gaming_4'; // fallback
-        } catch (e) { /* ignore */ }
-    });
-    // whatsapp group link (simulate dummy)
-    const whatsappBtn = document.getElementById('whatsappBtn');
-    if (whatsappBtn) whatsappBtn.href = 'https://chat.whatsapp.com/BS4wofjg0eQJGhiMbrkg3q?mode=gi_t';
-
-    // ---------- SCROLL TOP BUTTON ----------
-    const scrollTopBtn = document.getElementById('scrollTop');
-    if (scrollTopBtn) scrollTopBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // ---------- SIMPLE CONTACT FORM (prevent default + alert) ----------
     const contactForm = document.getElementById('contactForm');
     if (contactForm) contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Thanks for contacting. We’ll reply soon.');
+        alert('Thanks for reaching out! We will respond soon.');
         contactForm.reset();
     });
 

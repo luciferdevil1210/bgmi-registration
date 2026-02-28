@@ -65,7 +65,7 @@
                     <span><i class="fas fa-shield-alt"></i> Fair Play Policy</span>
                 </div>
             </div>
-        </section>
+             </section>
 
         <!-- LIVE SLOT COUNTER SECTION (with dynamic counter) -->
         <section id="slots" class="slots">
@@ -103,6 +103,36 @@
                 <button type="submit" class="btn primary-btn glow" id="submitFormBtn">Confirm Registration</button>
             </form>
         </section>
+        <section id="register" class="register">
+            <h2 class="section-title">Register Your Team</h2>
+            <form id="registrationForm" class="glass form">
+                <input type="text" name="teamName" placeholder="Team Name *" required>
+                <input type="text" name="iglName" placeholder="IGL Name *" required>
+                <input type="text" name="bgmiId" placeholder="BGMI ID *" required>
+                <input type="email" name="email" placeholder="Email *" required>
+                <input type="tel" name="whatsapp" placeholder="WhatsApp Number *" required pattern="[0-9]{10,12}" title="10-12 digit number">
+                <input type="text" name="city" placeholder="City / State *" required>
+                <select name="matchType" required>
+                    <option value="" disabled selected>Select Match Type *</option>
+                    <option value="TPP Squad">TPP Squad</option>
+                    <option value="TPP Duo">TPP Duo</option>
+                    <option value="Solo">Solo</option>
+                </select>
+                <div class="file-field"><label><i class="fas fa-camera"></i> Upload Screenshot (optional)</label><input type="file" name="screenshot" accept="image/*"></div>
+                <label class="checkbox"><input type="checkbox" name="terms" required> I accept terms & fair play policy</label>
+                <button type="submit" class="btn primary-btn glow" id="submitFormBtn">Confirm Registration</button>
+            </form>
+            <aside class="team-preview glass" id="teamPreview">
+                <h3><i class="fas fa-bolt"></i> Instant Team Information</h3>
+                <p><strong>Team:</strong> <span id="previewTeam">Not provided</span></p>
+                <p><strong>IGL:</strong> <span id="previewIgl">Not provided</span></p>
+                <p><strong>BGMI ID:</strong> <span id="previewBgmi">Not provided</span></p>
+                <p><strong>Contact:</strong> <span id="previewPhone">Not provided</span></p>
+                <p><strong>Location:</strong> <span id="previewCity">Not provided</span></p>
+                <p><strong>Mode:</strong> <span id="previewMode">Not selected</span></p>
+                <small>After submit, this full summary is sent directly to the authorized owner.</small>
+            </aside>
+        </section>
 
         <!-- INSTAGRAM SECTION -->
         <section id="instagram" class="instagram">
@@ -128,8 +158,7 @@
                     <input type="text" placeholder="Your Name" required>
                     <input type="email" placeholder="Email" required>
                     <textarea placeholder="Message" rows="3"></textarea>
-                    <button type="submit" class="btn secondary-btn">Send <i class="fas fa-paper-plane"></i></button>
-                </form>
+@@ -133,26 +150,26 @@
             </div>
         </section>
 
@@ -155,4 +184,5 @@
 
     <script src="script.js"></script>
 </body>
+</html>
 </html>
