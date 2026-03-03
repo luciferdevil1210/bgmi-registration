@@ -1,108 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BGMI Elite Scrims – Register</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f5a9d" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>Eng. Pratik Hire | Portfolio</title>
+  <meta
+    name="description"
+    content="Civil engineering portfolio showcasing software capability, project previews, and contact details."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<header class="header">
-    <div class="logo">BGMI<span>Elite</span></div>
-    <nav>
-        <a href="#home">Home</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home">Eng. Pratik Hire</a>
+      <button class="menu-toggle" aria-label="Open menu" aria-controls="main-nav" aria-expanded="false">Menu</button>
+      <nav class="site-nav" id="main-nav">
         <a href="#about">About</a>
-        <a href="#register">Register</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
-    </nav>
-</header>
-
-<!-- HERO -->
-<section id="home" class="hero">
-    <h1>India’s Competitive BGMI Scrims</h1>
-    <p>Daily Custom Rooms | Free Entry | Real Competition</p>
-    <a href="#register" class="btn">Register Now</a>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="about">
-    <h2>About Tournament</h2>
-    <p>BGMI Elite Scrims provides organized custom rooms daily. Fair play policy, zero entry fee and high level competitive matches.</p>
-</section>
-
-<!-- Floating Social Buttons -->
-<div class="floating-social">
-
-    <a href="https://chat.whatsapp.com/BS4wofjg0eQJGhiMbrkg3q"
-       target="_blank"
-       class="social-btn whatsapp">
-        <i class="fab fa-whatsapp"></i>
-        Join WhatsApp
-    </a>
-
-    <a href="https://instagram.com/crz_gaming_4"
-       target="_blank"
-       class="social-btn instagram">
-        <i class="fab fa-instagram"></i>
-        Follow Instagram
-    </a>
-
-</div>
-<!-- REGISTER -->
-<section id="register" class="register">
-    <h2>Register Your Team</h2>
-
-    <form id="registrationForm" class="form">
-        <input type="text" name="teamName" placeholder="Team Name *" required>
-        <input type="text" name="iglName" placeholder="IGL Name *" required>
-        <input type="text" name="bgmiId" placeholder="BGMI ID *" required>
-        <input type="email" name="email" placeholder="Email *" required>
-        <input type="tel" name="whatsapp" placeholder="WhatsApp Number *" required pattern="[0-9]{10}">
-        <input type="text" name="city" placeholder="City / State *" required>
-
-        <select name="matchType" required>
-            <option value="">Select Match Type *</option>
-            <option value="TPP Squad">TPP Squad</option>
-            <option value="TPP Duo">TPP Duo</option>
-            <option value="Solo">Solo</option>
-        </select>
-
-        <label class="checkbox">
-            <input type="checkbox" name="terms" required>
-            I accept fair play policy
-        </label>
-
-        <button type="submit" class="btn">Confirm Registration</button>
-    </form>
-
-    <!-- LIVE PREVIEW -->
-    <div class="preview" id="previewBox">
-        <h3>Instant Preview</h3>
-        <p><strong>Team:</strong> <span id="previewTeam">-</span></p>
-        <p><strong>IGL:</strong> <span id="previewIgl">-</span></p>
-        <p><strong>BGMI ID:</strong> <span id="previewBgmi">-</span></p>
-        <p><strong>Contact:</strong> <span id="previewPhone">-</span></p>
-        <p><strong>Location:</strong> <span id="previewCity">-</span></p>
-        <p><strong>Mode:</strong> <span id="previewMode">-</span></p>
+      </nav>
     </div>
-</section>
+  </header>
 
-<!-- CONTACT -->
-<section id="contact" class="contact">
-    <h2>Contact</h2>
-    <p>Email: bgmiscrimsreport.in</p>
-    <p>Instagram: @crz_gaming_4</p>
-</section>
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Portfolio</p>
+          <h1>Designing resilient structures backed by measurable engineering performance.</h1>
+          <p class="lead">
+            I specialize in civil engineering software and bring over 3 years of hands-on professional experience
+            delivering real-world project solutions.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">Explore Projects</a>
+            <a class="btn btn-secondary" href="#skills">View Software</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <h2>Quick Profile</h2>
+          <ul>
+            <li><span>Location</span><strong>Nashik, Maharashtra, (India)</strong></li>
+            <li><span>Experience</span><strong>4+ Years</strong></li>
+            <li><span>Specialty</span><strong>Civil Engineering Design</strong></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
 
-<footer>
-    <p>© 2026 BGMI Elite Scrims</p>
-</footer>
+    <section class="section" id="about">
+      <div class="container">
+        <h2>About Me</h2>
+        <p>
+          My workflow blends drafting precision, structural analysis, and presentation quality. Each package is
+          developed for constructability, coordination, and decision-ready visuals.
+        </p>
+      </div>
+    </section>
 
-<script src="script.js"></script>
+    <section class="section section-muted" id="skills">
+      <div class="container">
+        <h2>Skills</h2>
+        <div class="chip-grid">
+          <button class="skill-chip" type="button" aria-expanded="false">
+            <span class="skill-name">AutoCAD</span>
+            <span class="skill-level">100%</span>
+          </button>
+          <button class="skill-chip" type="button" aria-expanded="false">
+            <span class="skill-name">STAAD.Pro</span>
+            <span class="skill-level">98%</span>
+          </button>
+          <button class="skill-chip" type="button" aria-expanded="false">
+            <span class="skill-name">3ds Max</span>
+            <span class="skill-level">100%</span>
+          </button>
+          <button class="skill-chip" type="button" aria-expanded="false">
+            <span class="skill-name">Chief Architect</span>
+            <span class="skill-level">88%</span>
+          </button>
+          <button class="skill-chip" type="button" aria-expanded="false">
+            <span class="skill-name">Civil 3D + Photoshop</span>
+            <span class="skill-level">95%</span>
+          </button>
+          <button class="skill-chip" type="button" aria-expanded="false">
+            <span class="skill-name">SketchUp</span>
+            <span class="skill-level">95%</span>
+          </button>
+          <button class="skill-chip" type="button" aria-expanded="false">
+            <span class="skill-name">Walkthroughs</span>
+            <span class="skill-level">95%</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="project-grid">
+          <article class="project-card">
+            <img src="https://drive.google.com/thumbnail?id=1wK5QH8o7i29NS5pv57emTutfQReBJZgC&sz=w1200" alt="Preview of Project 01" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+            <h3>Project 01</h3>
+            <p>Civil design project preview.</p>
+            <a class="project-open-modal" href="https://drive.google.com/file/d/1wK5QH8o7i29NS5pv57emTutfQReBJZgC/view?usp=sharing" data-project-id="1wK5QH8o7i29NS5pv57emTutfQReBJZgC" data-project-title="Project 01" aria-label="Open Project 01 options">View Project</a>
+          </article>
+          <article class="project-card">
+            <img src="https://drive.google.com/thumbnail?id=1e3u9ToUSVRy4knz7vJcfMVwCZl1p3TPT&sz=w1200" alt="Preview of Project 02" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+            <h3>Project 02</h3>
+            <p>Civil design project preview.</p>
+            <a class="project-open-modal" href="https://drive.google.com/file/d/1e3u9ToUSVRy4knz7vJcfMVwCZl1p3TPT/view?usp=sharing" data-project-id="1e3u9ToUSVRy4knz7vJcfMVwCZl1p3TPT" data-project-title="Project 02" aria-label="Open Project 02 options">View Project</a>
+          </article>
+          <article class="project-card">
+            <img src="https://drive.google.com/thumbnail?id=1J60Iz3Kj0XcZkugUEXnwTLcJSkVTJxA-&sz=w1200" alt="Preview of Project 03" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+            <h3>Project 03</h3>
+            <p>Civil design project preview.</p>
+            <a class="project-open-modal" href="https://drive.google.com/file/d/1J60Iz3Kj0XcZkugUEXnwTLcJSkVTJxA-/view?usp=sharing" data-project-id="1J60Iz3Kj0XcZkugUEXnwTLcJSkVTJxA-" data-project-title="Project 03" aria-label="Open Project 03 options">View Project</a>
+          </article>
+          <article class="project-card">
+            <img src="https://drive.google.com/thumbnail?id=16BAUIQ37QA8bq0NbJGvXeI8C3CehAKN3&sz=w1200" alt="Preview of Project 04" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+            <h3>Project 04</h3>
+            <p>Civil design project preview.</p>
+            <a class="project-open-modal" href="https://drive.google.com/file/d/16BAUIQ37QA8bq0NbJGvXeI8C3CehAKN3/view?usp=sharing" data-project-id="16BAUIQ37QA8bq0NbJGvXeI8C3CehAKN3" data-project-title="Project 04" aria-label="Open Project 04 options">View Project</a>
+          </article>
+          <article class="project-card">
+            <img src="https://drive.google.com/thumbnail?id=1DUWrM7xfARDyPDUg0Xskr6pyLItucfA6&sz=w1200" alt="Preview of Project 05" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+            <h3>Project 05</h3>
+            <p>Civil design project preview.</p>
+            <a class="project-open-modal" href="https://drive.google.com/file/d/1DUWrM7xfARDyPDUg0Xskr6pyLItucfA6/view?usp=sharing" data-project-id="1DUWrM7xfARDyPDUg0Xskr6pyLItucfA6" data-project-title="Project 05" aria-label="Open Project 05 options">View Project</a>
+          </article>
+          <article class="project-card">
+            <img src="https://drive.google.com/thumbnail?id=1odV16mLKWSBM468g-qaljQbtCJE4N28H&sz=w1200" alt="Preview of Project 06" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+            <h3>Project 06</h3>
+            <p>Civil design project preview.</p>
+            <a class="project-open-modal" href="https://drive.google.com/file/d/1odV16mLKWSBM468g-qaljQbtCJE4N28H/view?usp=sharing" data-project-id="1odV16mLKWSBM468g-qaljQbtCJE4N28H" data-project-title="Project 06" aria-label="Open Project 06 options">View Project</a>
+          </article>
+          <article class="project-card">
+            <img src="https://drive.google.com/thumbnail?id=14nVETAyDVICC67CJpH6R37RHSwGitS7y&sz=w1200" alt="Preview of Project 07" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+            <h3>Project 07</h3>
+            <p>Civil design project preview.</p>
+            <a class="project-open-modal" href="https://drive.google.com/file/d/14nVETAyDVICC67CJpH6R37RHSwGitS7y/view?usp=sharing" data-project-id="14nVETAyDVICC67CJpH6R37RHSwGitS7y" data-project-title="Project 07" aria-label="Open Project 07 options">View Project</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="contact">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>Available for design support, drafting, structural analysis coordination, and engineering documentation.</p>
+        <div class="contact-links">
+          <a href="mailto:hirepratik1210@gmail.com">hirepratik1210@gmail.com</a>
+          <a href="tel:+918856984314">+91 8856984314</a>
+          <a href="https://wa.me/918856984314" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="https://www.linkedin.com/in/engineerpratik/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Pratik Hire | Civil Engineering Portfolio</p>
+    </div>
+  </footer>
+
+  <div class="project-modal" id="projectModal" aria-hidden="true">
+    <article class="project-modal-card" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+      <button class="project-modal-close" id="projectModalClose" type="button" aria-label="Close project popup">&times;</button>
+      <p class="eyebrow">Project Options</p>
+      <h3 id="projectModalTitle">Project Preview</h3>
+      <img id="projectModalImage" src="" alt="Selected project preview" />
+      <p class="project-modal-note" id="projectModalNote">Click Preview to load project image.</p>
+      <div class="project-modal-actions">
+        <button class="btn btn-secondary" id="projectPreviewBtn" type="button">Preview</button>
+        <a class="btn btn-primary" id="projectNewTabBtn" href="#" target="_blank" rel="noopener noreferrer">Open in New Tab</a>
+      </div>
+    </article>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
