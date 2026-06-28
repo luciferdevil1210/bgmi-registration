@@ -4,19 +4,16 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0f5a9d" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <title>Eng. Pratik Hire | Portfolio</title>
+  <meta name="theme-color" content="#111827" />
+  <title>AirPilot Gesture Control</title>
   <meta
     name="description"
-    content="Civil engineering portfolio showcasing software capability, project previews, and contact details."
+    content="A browser-based hand and finger gesture controller prototype for cursor movement, clicks, scrolling, typing shortcuts, and file/folder style interactions."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
   <link rel="stylesheet" href="style.css" />
@@ -24,13 +21,13 @@
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="#home">Eng. Pratik Hire</a>
+      <a class="brand" href="#home" aria-label="AirPilot Gesture Control home">AirPilot</a>
       <button class="menu-toggle" aria-label="Open menu" aria-controls="main-nav" aria-expanded="false">Menu</button>
       <nav class="site-nav" id="main-nav">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <a href="#gesture-lab">Gesture Lab</a>
+        <a href="#commands">Commands</a>
+        <a href="#workspace">Workspace</a>
+        <a href="#safety">Safety</a>
       </nav>
     </div>
   </header>
@@ -38,159 +35,170 @@
   <main id="home">
     <section class="hero">
       <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Portfolio</p>
-          <h1>Designing resilient structures backed by measurable engineering performance.</h1>
+        <div class="hero-copy">
+          <p class="eyebrow">Hands-free laptop control prototype</p>
+          <h1>Control the screen with finger and hand gestures.</h1>
           <p class="lead">
-            I specialize in civil engineering software and bring over 3 years of hands-on professional experience
-            delivering real-world project solutions.
+            AirPilot turns your webcam into a gesture interface. Move the on-screen cursor with your index finger,
+            pinch to click, use two fingers to scroll, and trigger common file, folder, and text actions from a command panel.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">Explore Projects</a>
-            <a class="btn btn-secondary" href="#skills">View Software</a>
+            <a class="btn btn-primary" href="#gesture-lab">Start Gesture Lab</a>
+            <a class="btn btn-secondary" href="#commands">See Gestures</a>
           </div>
         </div>
-        <aside class="hero-card">
-          <h2>Quick Profile</h2>
+        <aside class="hero-card" aria-label="Prototype capabilities">
+          <h2>What this demo controls</h2>
           <ul>
-            <li><span>Location</span><strong>Nashik, Maharashtra, (India)</strong></li>
-            <li><span>Experience</span><strong>4+ Years</strong></li>
-            <li><span>Specialty</span><strong>Civil Engineering Design</strong></li>
+            <li><span>Cursor</span><strong>Index finger</strong></li>
+            <li><span>Click</span><strong>Pinch</strong></li>
+            <li><span>Scroll</span><strong>Two fingers</strong></li>
+            <li><span>Text</span><strong>Gesture shortcuts</strong></li>
           </ul>
         </aside>
       </div>
     </section>
 
-    <section class="section" id="about">
+    <section class="section" id="gesture-lab">
+      <div class="container gesture-grid">
+        <div class="camera-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Live tracker</p>
+            <h2>Gesture Lab</h2>
+          </div>
+          <div class="video-shell">
+            <video id="gestureVideo" autoplay playsinline muted aria-label="Webcam hand tracking video"></video>
+            <canvas id="gestureCanvas" aria-hidden="true"></canvas>
+            <div class="permission-card" id="permissionCard">
+              <strong>Camera permission required</strong>
+              <span>Start tracking to use hand landmarks. Processing happens in your browser.</span>
+            </div>
+          </div>
+          <div class="control-row">
+            <button class="btn btn-primary" id="startGestureBtn" type="button">Start Camera</button>
+            <button class="btn btn-secondary" id="stopGestureBtn" type="button" disabled>Stop</button>
+          </div>
+          <p class="status-line" id="gestureStatus">Ready. Use a well-lit room and keep your full hand visible.</p>
+        </div>
+
+        <aside class="gesture-dashboard">
+          <div class="metric-card">
+            <span>Current gesture</span>
+            <strong id="currentGesture">Idle</strong>
+          </div>
+          <div class="metric-card">
+            <span>Action</span>
+            <strong id="currentAction">Waiting</strong>
+          </div>
+          <div class="metric-card">
+            <span>Confidence</span>
+            <strong id="gestureConfidence">0%</strong>
+          </div>
+          <div class="command-log" aria-live="polite">
+            <h3>Command Log</h3>
+            <ul id="commandLog">
+              <li>System ready.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="commands">
       <div class="container">
-        <h2>About Me</h2>
+        <p class="eyebrow">Gesture map</p>
+        <h2>Finger gestures and controls</h2>
+        <div class="command-grid">
+          <article class="command-card">
+            <span class="gesture-icon">☝️</span>
+            <h3>Point</h3>
+            <p>Move your index finger to steer the virtual cursor across the whole page.</p>
+          </article>
+          <article class="command-card">
+            <span class="gesture-icon">👌</span>
+            <h3>Pinch</h3>
+            <p>Touch thumb and index finger together to click the item under the virtual cursor.</p>
+          </article>
+          <article class="command-card">
+            <span class="gesture-icon">✌️</span>
+            <h3>Two fingers</h3>
+            <p>Raise index and middle fingers, then move up or down to scroll the screen.</p>
+          </article>
+          <article class="command-card">
+            <span class="gesture-icon">🖐️</span>
+            <h3>Open palm</h3>
+            <p>Show all fingers to pause clicking and safely move around without activating controls.</p>
+          </article>
+          <article class="command-card">
+            <span class="gesture-icon">✊</span>
+            <h3>Fist</h3>
+            <p>Make a fist to open the quick launcher for file, folder, and text actions.</p>
+          </article>
+          <article class="command-card">
+            <span class="gesture-icon">🤟</span>
+            <h3>Three fingers</h3>
+            <p>Trigger the selected quick command and update the workspace below.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="workspace">
+      <div class="container workspace-grid">
+        <div>
+          <p class="eyebrow">Interactive workspace</p>
+          <h2>Practice controlling files, folders, and text</h2>
+          <p>
+            Browser security prevents a web page from controlling your real laptop files without permission.
+            This safe workspace simulates the same interactions so gestures can select folders, open files,
+            type text, and run shortcuts.
+          </p>
+          <div class="file-browser" id="fileBrowser" aria-label="Simulated file browser">
+            <button class="file-item" type="button" data-file="Projects folder">📁 Projects</button>
+            <button class="file-item" type="button" data-file="Documents folder">📁 Documents</button>
+            <button class="file-item" type="button" data-file="Notes document">📄 Notes.txt</button>
+            <button class="file-item" type="button" data-file="Design image">🖼️ Design.png</button>
+          </div>
+        </div>
+        <div class="text-console">
+          <label for="gestureText">Gesture text pad</label>
+          <textarea id="gestureText" rows="10" placeholder="Use command buttons or gestures to add text here..."></textarea>
+          <div class="quick-actions" id="quickActions">
+            <button type="button" data-command="open">Open Selected</button>
+            <button type="button" data-command="rename">Rename</button>
+            <button type="button" data-command="copy">Copy</button>
+            <button type="button" data-command="delete">Delete</button>
+            <button type="button" data-command="type">Type Text</button>
+            <button type="button" data-command="selectAll">Select All</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="safety">
+      <div class="container safety-card">
+        <p class="eyebrow">Important note</p>
+        <h2>About full laptop control</h2>
         <p>
-          My workflow blends drafting precision, structural analysis, and presentation quality. Each package is
-          developed for constructability, coordination, and decision-ready visuals.
+          A normal website cannot control every operating-system window, file, or folder directly. To control the full
+          laptop, this gesture engine would need to be packaged as a trusted desktop app with accessibility permissions
+          on Windows, macOS, or Linux. This project provides the browser prototype and interaction design for that app.
         </p>
-      </div>
-    </section>
-
-    <section class="section section-muted" id="skills">
-      <div class="container">
-        <h2>Skills</h2>
-        <div class="chip-grid">
-          <button class="skill-chip" type="button" aria-expanded="false">
-            <span class="skill-name">AutoCAD</span>
-            <span class="skill-level">100%</span>
-          </button>
-          <button class="skill-chip" type="button" aria-expanded="false">
-            <span class="skill-name">STAAD.Pro</span>
-            <span class="skill-level">98%</span>
-          </button>
-          <button class="skill-chip" type="button" aria-expanded="false">
-            <span class="skill-name">3ds Max</span>
-            <span class="skill-level">100%</span>
-          </button>
-          <button class="skill-chip" type="button" aria-expanded="false">
-            <span class="skill-name">Chief Architect</span>
-            <span class="skill-level">88%</span>
-          </button>
-          <button class="skill-chip" type="button" aria-expanded="false">
-            <span class="skill-name">Civil 3D + Photoshop</span>
-            <span class="skill-level">95%</span>
-          </button>
-          <button class="skill-chip" type="button" aria-expanded="false">
-            <span class="skill-name">SketchUp</span>
-            <span class="skill-level">95%</span>
-          </button>
-          <button class="skill-chip" type="button" aria-expanded="false">
-            <span class="skill-name">Walkthroughs</span>
-            <span class="skill-level">95%</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="container">
-        <h2>Projects</h2>
-        <div class="project-grid">
-          <article class="project-card">
-            <img src="https://drive.google.com/thumbnail?id=1wK5QH8o7i29NS5pv57emTutfQReBJZgC&sz=w1200" alt="Preview of Project 01" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
-            <h3>Project 01</h3>
-            <p>Civil design project preview.</p>
-            <a class="project-open-modal" href="https://drive.google.com/file/d/1wK5QH8o7i29NS5pv57emTutfQReBJZgC/view?usp=sharing" data-project-id="1wK5QH8o7i29NS5pv57emTutfQReBJZgC" data-project-title="Project 01" aria-label="Open Project 01 options">View Project</a>
-          </article>
-          <article class="project-card">
-            <img src="https://drive.google.com/thumbnail?id=1e3u9ToUSVRy4knz7vJcfMVwCZl1p3TPT&sz=w1200" alt="Preview of Project 02" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
-            <h3>Project 02</h3>
-            <p>Civil design project preview.</p>
-            <a class="project-open-modal" href="https://drive.google.com/file/d/1e3u9ToUSVRy4knz7vJcfMVwCZl1p3TPT/view?usp=sharing" data-project-id="1e3u9ToUSVRy4knz7vJcfMVwCZl1p3TPT" data-project-title="Project 02" aria-label="Open Project 02 options">View Project</a>
-          </article>
-          <article class="project-card">
-            <img src="https://drive.google.com/thumbnail?id=1J60Iz3Kj0XcZkugUEXnwTLcJSkVTJxA-&sz=w1200" alt="Preview of Project 03" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
-            <h3>Project 03</h3>
-            <p>Civil design project preview.</p>
-            <a class="project-open-modal" href="https://drive.google.com/file/d/1J60Iz3Kj0XcZkugUEXnwTLcJSkVTJxA-/view?usp=sharing" data-project-id="1J60Iz3Kj0XcZkugUEXnwTLcJSkVTJxA-" data-project-title="Project 03" aria-label="Open Project 03 options">View Project</a>
-          </article>
-          <article class="project-card">
-            <img src="https://drive.google.com/thumbnail?id=16BAUIQ37QA8bq0NbJGvXeI8C3CehAKN3&sz=w1200" alt="Preview of Project 04" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
-            <h3>Project 04</h3>
-            <p>Civil design project preview.</p>
-            <a class="project-open-modal" href="https://drive.google.com/file/d/16BAUIQ37QA8bq0NbJGvXeI8C3CehAKN3/view?usp=sharing" data-project-id="16BAUIQ37QA8bq0NbJGvXeI8C3CehAKN3" data-project-title="Project 04" aria-label="Open Project 04 options">View Project</a>
-          </article>
-          <article class="project-card">
-            <img src="https://drive.google.com/thumbnail?id=1DUWrM7xfARDyPDUg0Xskr6pyLItucfA6&sz=w1200" alt="Preview of Project 05" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
-            <h3>Project 05</h3>
-            <p>Civil design project preview.</p>
-            <a class="project-open-modal" href="https://drive.google.com/file/d/1DUWrM7xfARDyPDUg0Xskr6pyLItucfA6/view?usp=sharing" data-project-id="1DUWrM7xfARDyPDUg0Xskr6pyLItucfA6" data-project-title="Project 05" aria-label="Open Project 05 options">View Project</a>
-          </article>
-          <article class="project-card">
-            <img src="https://drive.google.com/thumbnail?id=1odV16mLKWSBM468g-qaljQbtCJE4N28H&sz=w1200" alt="Preview of Project 06" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
-            <h3>Project 06</h3>
-            <p>Civil design project preview.</p>
-            <a class="project-open-modal" href="https://drive.google.com/file/d/1odV16mLKWSBM468g-qaljQbtCJE4N28H/view?usp=sharing" data-project-id="1odV16mLKWSBM468g-qaljQbtCJE4N28H" data-project-title="Project 06" aria-label="Open Project 06 options">View Project</a>
-          </article>
-          <article class="project-card">
-            <img src="https://drive.google.com/thumbnail?id=14nVETAyDVICC67CJpH6R37RHSwGitS7y&sz=w1200" alt="Preview of Project 07" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
-            <h3>Project 07</h3>
-            <p>Civil design project preview.</p>
-            <a class="project-open-modal" href="https://drive.google.com/file/d/14nVETAyDVICC67CJpH6R37RHSwGitS7y/view?usp=sharing" data-project-id="14nVETAyDVICC67CJpH6R37RHSwGitS7y" data-project-title="Project 07" aria-label="Open Project 07 options">View Project</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-muted" id="contact">
-      <div class="container">
-        <h2>Contact</h2>
-        <p>Available for design support, drafting, structural analysis coordination, and engineering documentation.</p>
-        <div class="contact-links">
-          <a href="mailto:hirepratik1210@gmail.com">hirepratik1210@gmail.com</a>
-          <a href="tel:+918856984314">+91 8856984314</a>
-          <a href="https://wa.me/918856984314" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a href="https://www.linkedin.com/in/engineerpratik/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </div>
       </div>
     </section>
   </main>
 
+  <div class="virtual-cursor" id="virtualCursor" aria-hidden="true"></div>
+
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; <span id="year"></span> Pratik Hire | Civil Engineering Portfolio</p>
+      <p>&copy; <span id="year"></span> AirPilot Gesture Control Prototype</p>
     </div>
   </footer>
 
-  <div class="project-modal" id="projectModal" aria-hidden="true">
-    <article class="project-modal-card" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
-      <button class="project-modal-close" id="projectModalClose" type="button" aria-label="Close project popup">&times;</button>
-      <p class="eyebrow">Project Options</p>
-      <h3 id="projectModalTitle">Project Preview</h3>
-      <img id="projectModalImage" src="" alt="Selected project preview" />
-      <p class="project-modal-note" id="projectModalNote">Click Preview to load project image.</p>
-      <div class="project-modal-actions">
-        <button class="btn btn-secondary" id="projectPreviewBtn" type="button">Preview</button>
-        <a class="btn btn-primary" id="projectNewTabBtn" href="#" target="_blank" rel="noopener noreferrer">Open in New Tab</a>
-      </div>
-    </article>
-  </div>
-
-  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
